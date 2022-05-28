@@ -3,25 +3,50 @@ window.addEventListener("scroll", onScroll);
 onScroll();
 function onScroll() {
   showNavOnScroll();
-  activateMenuAtCUrrentSection();
+  activateMenuAtCUrrentSection(home);
+  activateMenuAtCUrrentSection(services);
+  activateMenuAtCUrrentSection(about);
+  activateMenuAtCUrrentSection(contact);
   showBackToTopButtonOnScroll();
 }
 
-function activateMenuAtCUrrentSection() {
+function activateMenuAtCUrrentSection(section) {
   // linha alvo
   const targetLine = scrollY + innerHeight / 2;
 
   // Verificar se a secção passou da linha
   // quais dados vou precisar ?
-  const sectionTop = home.offsetTop;
+  const sectionTop = section.offsetTop;
 
   // Altura da secção
-  const sectionHeight = home.offsetHeight;
+  const sectionHeight = section.offsetHeight;
 
   // O topo da seção chegou ou ultrapassou a linha alto
-  const sectionTopReachOrPassedTargetLine = 
+  const sectionTopReachOrPassedTargetLine = targetLine >= sectionTop;
 
-  if (true) {
+  // informações dos dados e da lógica
+  // console.log(
+  //   "O topo da seção chegou ou passou da linha ?",
+  //   sectionTopReachOrPassedTargetLine
+  // );
+
+  // Verificar se a base está abaixo da linha alvo
+  // quais dados vou precisar ?
+  const sectionEndsAt = sectionTop + sectionHeight;
+
+  const sectionEndPassedTargetLine = sectionEndsAt <= targetLine;
+  // console.log("O fundo da seção passou da linha ?", sectionEndPassedTargetLine);
+
+  // limite da seção
+  const sectionBoundaries =
+    sectionTopReachOrPassedTargetLine && !sectionEndPassedTargetLine;
+
+  const sectionId = section.getAttribute("id");
+  const menuElement = document.querySelector(`.menu a[href*=${sectionId}]`);
+
+  menuElement.classList.remove("active");
+  if (sectionBoundaries) {
+    menuElement.classList.add("active");
   }
 }
 
