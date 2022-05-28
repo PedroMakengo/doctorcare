@@ -3,7 +3,26 @@ window.addEventListener("scroll", onScroll);
 onScroll();
 function onScroll() {
   showNavOnScroll();
+  activateMenuAtCUrrentSection();
   showBackToTopButtonOnScroll();
+}
+
+function activateMenuAtCUrrentSection() {
+  // linha alvo
+  const targetLine = scrollY + innerHeight / 2;
+
+  // Verificar se a secção passou da linha
+  // quais dados vou precisar ?
+  const sectionTop = home.offsetTop;
+
+  // Altura da secção
+  const sectionHeight = home.offsetHeight;
+
+  // O topo da seção chegou ou ultrapassou a linha alto
+  const sectionTopReachOrPassedTargetLine = 
+
+  if (true) {
+  }
 }
 
 function showNavOnScroll() {
